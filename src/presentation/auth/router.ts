@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { AuthController } from './controller'; // 1
+import { AuthDataSourceImpl, AuthRepositoryImpl } from '../../infraestructure'; 
 
 export class AuthRoutes {
 
@@ -7,11 +8,15 @@ export class AuthRoutes {
     static get routes(): Router {
   
       const router = Router();
-      const controller = new AuthController(); // 2
+
+      const datasource = new AuthDataSourceImpl(); 
+      const AuthRepository = new AuthRepositoryImpl(datasource); 
+      const controller = new AuthController(AuthRepository); 
   
-        // Definir todas mis rutas especificas
-        router.post('/login', controller.loginUser) // 3
-        router.post('/register', controller.registerUser) // 4
+  
+        router.post('/login', controller.loginUser) 
+        router.post('/register', controller.registerUser) 
+  
   
         return router;
     }
