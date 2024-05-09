@@ -1,4 +1,4 @@
-import { AuthDataSource, CustomError, RegisterUserDto, UserEntity } from "../domain"; //2
+import { AuthDataSource, CustomError, RegisterUserDto, UserEntity } from "../../domain"; //2
 
 
 
